@@ -3,11 +3,11 @@ grammar PyGrammar;
 sum : INT '+' INT;
 
 assignment:
-    | NAME NEWLINE
-    | NAME '=' INT
+    | IDENT NEWLINE
+    | IDENT '=' INT
     ;
 
-NAME : [a-z0-9]+;
+IDENT : [a-z0-9]+;
 
 INT : [0-9]+;
 

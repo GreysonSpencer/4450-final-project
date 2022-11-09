@@ -8,7 +8,9 @@ expression:
 	| expression sum expression
 	| expression subtract expression
 	| expression multiply expression
-	| expression division expression;
+	| expression division expression
+    | assignment
+    ;
 
 sum: INT '+' INT;
 

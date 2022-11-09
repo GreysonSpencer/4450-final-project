@@ -18,7 +18,7 @@ multiply: INT '*' INT;
 
 division: INT '/' INT;
 
-assignment: | IDENT NEWLINE | IDENT '=' INT;
+assignment: IDENT '=' expression;
 
 IDENT: [a-zA-Z0-9]+;
 

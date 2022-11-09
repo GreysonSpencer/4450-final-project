@@ -1,5 +1,14 @@
 grammar PyGrammar;
 
+expression :
+    | INT
+    | IDENT
+    | expression sum expression
+    | expression subtract expression
+    | expression multiply expression
+    | expression division expression
+    ;
+
 sum: INT '+' INT;
 
 subtract: INT '-' INT;

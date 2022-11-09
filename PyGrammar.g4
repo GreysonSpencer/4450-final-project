@@ -3,24 +3,32 @@ grammar PyGrammar;
 program: (expression NEWLINE)+;
 
 expression:
-	| INT
-	| IDENT
-	| expression '+' expression
-	| expression subtract expression
-	| expression multiply expression
-	| expression division expression
+	| variable
     | assignment
     ;
 
-sum: INT '+' INT;
+function:
+	| variable
+	| sum 
+	| subtract function
+	| multiply function
+	| division function
+	;
 
-subtract: INT '-' INT;
+variable:
+	| INT
+	| IDENT
+	;
 
-multiply: INT '*' INT;
+sum: variable '+' variable;
 
-division: INT '/' INT;
+subtract: variable '-' variable;
 
-assignment: IDENT '=' expression;
+multiply: variable '*' variable;
+
+division: variable '/' variable;
+
+assignment: IDENT '=' function;
 
 IDENT: [a-zA-Z0-9]+;
 

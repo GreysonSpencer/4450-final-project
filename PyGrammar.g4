@@ -1,5 +1,7 @@
 grammar PyGrammar;
 
+program : (expression NEWLINE)+;
+
 expression :
     | INT
     | IDENT

@@ -26,3 +26,5 @@ IDENT: [a-zA-Z0-9]+;
 INT: [0-9]+;
 
 NEWLINE: [\n]+;
+
+WHITESPACE: [ \t]+ ->skip; //Currently ignored, will need to fix for deliverable 2

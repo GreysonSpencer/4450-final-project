@@ -5,7 +5,7 @@ program: (expression NEWLINE)+;
 expression:
 	| INT
 	| IDENT
-	| expression sum expression
+	| expression '+' expression
 	| expression subtract expression
 	| expression multiply expression
 	| expression division expression

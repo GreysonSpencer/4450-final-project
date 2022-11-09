@@ -1,14 +1,17 @@
 grammar PyGrammar;
 
-sum : INT '+' INT;
+sum: INT '+' INT;
 
-assignment:
-    | IDENT NEWLINE
-    | IDENT '=' INT
-    ;
+subtract: INT '-' INT;
 
-IDENT : [a-z0-9]+;
+multiply: INT '*' INT;
 
-INT : [0-9]+;
+division: INT '/' INT;
 
-NEWLINE : [\n]+;
+assignment: | IDENT NEWLINE | IDENT '=' INT;
+
+IDENT: [a-z0-9]+;
+
+INT: [0-9]+;
+
+NEWLINE: [\n]+;

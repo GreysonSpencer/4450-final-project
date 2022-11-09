@@ -5,10 +5,12 @@ program: (expression NEWLINE)+;
 expression:
 	| INT
 	| IDENT
-	| expression sum expression
+	| expression '+' expression
 	| expression subtract expression
 	| expression multiply expression
-	| expression division expression;
+	| expression division expression
+    | assignment
+    ;
 
 sum: INT '+' INT;
 
@@ -18,7 +20,7 @@ multiply: INT '*' INT;
 
 division: INT '/' INT;
 
-assignment: | IDENT NEWLINE | IDENT '=' INT;
+assignment: IDENT '=' expression;
 
 IDENT: [a-zA-Z0-9]+;
 

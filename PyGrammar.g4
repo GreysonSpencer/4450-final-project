@@ -26,7 +26,7 @@ INT: [0-9]+;
 
 DOUBLE: [0-9]+ ('.' [0-9]+)?;
 
-NEWLINE: [\n]+;
+NEWLINE: [\r\n]+;
 
 WHITESPACE:
 	[ \t]+ -> skip; //Currently ignored, will need to fix for deliverable 2

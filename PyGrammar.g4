@@ -3,30 +3,27 @@ grammar PyGrammar;
 program: (expression NEWLINE)+;
 
 expression:
-	| INT
+	| NUMBER
 	| IDENT
 	| expression '+' expression
 	| expression subtract expression
 	| expression multiply expression
 	| expression division expression
-    | assignment
-    ;
+	| assignment;
 
-sum: INT '+' INT;
+sum: NUMBER '+' NUMBER;
 
-subtract: INT '-' INT;
+subtract: NUMBER '-' NUMBER;
 
-multiply: INT '*' INT;
+multiply: NUMBER '*' NUMBER;
 
-division: INT '/' INT;
+division: NUMBER '/' NUMBER;
 
 assignment: IDENT '=' expression;
 
 IDENT: [a-zA-Z0-9]+;
 
-INT: [0-9]+;
-
-DOUBLE: [0-9]+ ('.' [0-9]+)?;
+NUMBER: [0-9]+ ('.' [0-9]+)?;
 
 NEWLINE: [\r\n]+;
 

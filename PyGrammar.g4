@@ -4,7 +4,7 @@ program: (expression NEWLINE)+;
 
 expression:
 	| variable
-    | assignment
+	| assignment
     ;
 
 function:

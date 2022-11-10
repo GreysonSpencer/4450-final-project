@@ -15,7 +15,12 @@ expression:
 	| expression '*' expression
 	| expression '/' expression;
 
-assignment: IDENT '=' expression;
+assignment: 
+    | IDENT '=' expression
+    | IDENT '+=' expression
+    | IDENT '-=' expression
+    | IDENT '*=' expression
+    | IDENT '/=' expression;
 
 IDENT: [a-zA-Z0-9]+;
 

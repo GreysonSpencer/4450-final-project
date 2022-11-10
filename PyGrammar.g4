@@ -6,18 +6,10 @@ expression:
 	| NUMBER
 	| IDENT
 	| expression '+' expression
-	| expression subtract expression
-	| expression multiply expression
-	| expression division expression
+	| expression '-' expression
+	| expression '*' expression
+	| expression '/' expression
 	| assignment;
-
-sum: NUMBER '+' NUMBER;
-
-subtract: NUMBER '-' NUMBER;
-
-multiply: NUMBER '*' NUMBER;
-
-division: NUMBER '/' NUMBER;
 
 assignment: IDENT '=' expression;
 

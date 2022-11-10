@@ -9,24 +9,15 @@ expression:
 
 function:
 	| variable
-	| sum 
-	| subtract function
-	| multiply function
-	| division function
+	| variable ('+' | '-') function
+	| variable ('*' | '/') function
 	;
 
 variable:
 	| INT
 	| IDENT
+	| DOUBLE
 	;
-
-sum: variable '+' variable;
-
-subtract: variable '-' variable;
-
-multiply: variable '*' variable;
-
-division: variable '/' variable;
 
 assignment: IDENT '=' function;
 

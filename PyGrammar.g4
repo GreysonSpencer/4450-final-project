@@ -9,6 +9,7 @@ function:
 expression:
 	| NUMBER
 	| IDENT
+    | '(' expression ')'
 	| expression '+' expression
 	| expression '-' expression
 	| expression '*' expression

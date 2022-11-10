@@ -13,7 +13,8 @@ expression:
 	| expression '+' expression
 	| expression '-' expression
 	| expression '*' expression
-	| expression '/' expression;
+	| expression '/' expression
+    | expression '%' expression;
 
 assignment: 
     | IDENT '=' expression

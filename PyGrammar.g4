@@ -1,6 +1,10 @@
 grammar PyGrammar;
 
-program: (expression NEWLINE)+;
+program: (function NEWLINE)+;
+
+function:
+    | assignment
+    | expression;
 
 expression:
 	| NUMBER
@@ -8,8 +12,7 @@ expression:
 	| expression '+' expression
 	| expression '-' expression
 	| expression '*' expression
-	| expression '/' expression
-	| assignment;
+	| expression '/' expression;
 
 assignment: IDENT '=' expression;
 

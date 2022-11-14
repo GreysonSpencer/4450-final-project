@@ -32,3 +32,5 @@ NEWLINE: [\r\n]+;
 
 WHITESPACE:
 	[ \t]+ -> skip; //Currently ignored, will need to fix for deliverable 2
+
+//COMMENT: '#' ~NEWLINE; Currently ignored, will be fully implemented for deliverable 3

@@ -5,14 +5,13 @@ program: (function NEWLINE)+;
 function: | assignment | expression;
 
 expression:
-	| NUMBER
-	| IDENT
-	| '(' expression ')'
-	| expression '+' expression
-	| expression '-' expression
-	| expression '*' expression
-	| expression '/' expression
-	| expression '%' expression;
+	//arithmeticExpression (assignment arithmeticExpression)*; arithmeticExpression:
+	multiplicationExpression (
+		('+' | '-') multiplicationExpression
+	)*;
+multiplicationExpression:
+	precedenceExpression (('*' | '/' | '%') precedenceExpression)*;
+precedenceExpression: '(' expression ')' | IDENT | NUMBER;
 
 assignment:
 	| IDENT '=' expression

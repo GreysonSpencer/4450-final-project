@@ -19,7 +19,7 @@ multiply: NUMBER '*' NUMBER;
 
 division: NUMBER '/' NUMBER;
 
-assignment: IDENT '=' expression;
+assignment: IDENT '=' function;
 
 IDENT: [a-zA-Z0-9]+;
 

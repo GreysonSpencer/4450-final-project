@@ -15,7 +15,10 @@ expression:
 multiplicationExpression:
 	precedenceExpression (('*' | '/' | '%') precedenceExpression)*;
 
-precedenceExpression: '(' expression ')' | IDENT | NUMBER;
+precedenceExpression: 
+    | '(' expression ')' 
+    | IDENT 
+    | NUMBER;
 
 assignment:
 	| IDENT '=' expression

@@ -2,15 +2,19 @@ grammar PyGrammar;
 
 program: (function NEWLINE)+;
 
-function: | assignment | expression;
+function: 
+    | assignment 
+    | expression;
 
 expression:
 	//arithmeticExpression (assignment arithmeticExpression)*; arithmeticExpression:
 	multiplicationExpression (
 		('+' | '-') multiplicationExpression
 	)*;
+
 multiplicationExpression:
 	precedenceExpression (('*' | '/' | '%') precedenceExpression)*;
+
 precedenceExpression: '(' expression ')' | IDENT | NUMBER;
 
 assignment:

@@ -3,25 +3,25 @@ grammar PyGrammar;
 program: (function NEWLINE)+;
 
 function:
-    | assignment
-    | expression;
+  | assignment
+  | expression;
 
 expression:
 	| NUMBER
 	| IDENT
-    | '(' expression ')'
+  | '(' expression ')'
 	| expression '+' expression
 	| expression '-' expression
 	| expression '*' expression
 	| expression '/' expression
-    | expression '%' expression;
+  | expression '%' expression;
 
 assignment: 
-    | IDENT '=' expression
-    | IDENT '+=' expression
-    | IDENT '-=' expression
-    | IDENT '*=' expression
-    | IDENT '/=' expression;
+  | IDENT '=' expression
+  | IDENT '+=' expression
+  | IDENT '-=' expression
+  | IDENT '*=' expression
+  | IDENT '/=' expression;
 
 IDENT: [a-zA-Z0-9]+;
 

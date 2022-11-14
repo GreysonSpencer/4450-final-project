@@ -1,25 +1,27 @@
 grammar PyGrammar;
 
-program: (expression NEWLINE)+;
+program: (function NEWLINE)+;
+
+function:
+  | assignment
+  | expression;
 
 expression:
 	| NUMBER
 	| IDENT
+  | '(' expression ')'
 	| expression '+' expression
-	| expression subtract expression
-	| expression multiply expression
-	| expression division expression
-	| assignment;
+	| expression '-' expression
+	| expression '*' expression
+	| expression '/' expression
+  | expression '%' expression;
 
-sum: NUMBER '+' NUMBER;
-
-subtract: NUMBER '-' NUMBER;
-
-multiply: NUMBER '*' NUMBER;
-
-division: NUMBER '/' NUMBER;
-
-assignment: IDENT '=' function;
+assignment: 
+  | IDENT '=' expression
+  | IDENT '+=' expression
+  | IDENT '-=' expression
+  | IDENT '*=' expression
+  | IDENT '/=' expression;
 
 IDENT: [a-zA-Z0-9]+;
 

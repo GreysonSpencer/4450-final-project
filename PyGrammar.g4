@@ -2,30 +2,28 @@ grammar PyGrammar;
 
 program: (function NEWLINE)+;
 
-function:
-  | assignment
-  | expression;
+function: | assignment | expression;
 
 expression:
 	| NUMBER
 	| IDENT
-  | '(' expression ')'
+	| '(' expression ')'
 	| expression '+' expression
 	| expression '-' expression
 	| expression '*' expression
 	| expression '/' expression
-  | expression '%' expression;
+	| expression '%' expression;
 
-assignment: 
-  | IDENT '=' expression
-  | IDENT '+=' expression
-  | IDENT '-=' expression
-  | IDENT '*=' expression
-  | IDENT '/=' expression;
+assignment:
+	| IDENT '=' expression
+	| IDENT '+=' expression
+	| IDENT '-=' expression
+	| IDENT '*=' expression
+	| IDENT '/=' expression;
 
-IDENT: [a-zA-Z0-9]+;
+IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 
-NUMBER: '-'?[0-9]+ ('.' [0-9]+)?;
+NUMBER: '-'? [0-9]+ ('.' [0-9]+)?;
 
 NEWLINE: [\r\n]+;
 

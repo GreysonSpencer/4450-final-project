@@ -2,12 +2,20 @@ grammar PyGrammar;
 
 program: (function NEWLINE)+;
 
-function: 
-    | assignment 
-    | expression;
+// NOTE to Greyson for formatting (because Prettier messes it up): had these on their own lines 
+function: | assignment | expression;
 
-expression:
-	//arithmeticExpression (assignment arithmeticExpression)*; arithmeticExpression:
+// NOTE to Greyson for formatting (because Prettier messes it up): move 'orExpression;' to its own line
+expression: orExpression;
+
+// NOTE to Greyson for formatting (because Prettier messes it up): move the expression passed 'orExpression:' to its own line
+orExpression: andExpression ('or' andExpression)*;
+
+andExpression:
+	arithmeticExpression ('and' arithmeticExpression)*;
+
+// NOTE to Greyson for formatting (because Prettier messes it up): had this expression on 1 line, not 3
+arithmeticExpression:
 	multiplicationExpression (
 		('+' | '-') multiplicationExpression
 	)*;
@@ -15,10 +23,11 @@ expression:
 multiplicationExpression:
 	precedenceExpression (('*' | '/' | '%') precedenceExpression)*;
 
-precedenceExpression: 
-    | '(' expression ')' 
-    | IDENT 
-    | NUMBER;
+precedenceExpression:
+	// TODO: implement 'not' in a way that maintains the expression flow and includes the correct precedence
+	| '(' expression ')'
+	| IDENT
+	| NUMBER;
 
 assignment:
 	| IDENT '=' expression

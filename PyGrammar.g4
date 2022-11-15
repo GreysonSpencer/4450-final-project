@@ -5,7 +5,8 @@ program: (function NEWLINE)+;
 // NOTE to Greyson for formatting (because Prettier messes it up): had these on their own lines 
 function: | assignment | expression;
 
-// NOTE to Greyson for formatting (because Prettier messes it up): move 'orExpression;' to its own line
+// NOTE to Greyson for formatting (because Prettier messes it up): move 'orExpression;' to its own
+// TODO: implement conditional statements for the comparison operators within the correct precedence
 expression: orExpression;
 
 // NOTE to Greyson for formatting (because Prettier messes it up): move the expression passed 'orExpression:' to its own line
@@ -35,6 +36,13 @@ assignment:
 	| IDENT '-=' expression
 	| IDENT '*=' expression
 	| IDENT '/=' expression;
+
+// I don't think we want these to look like 'assignment' above, because we want to embed these in
+// expressions like IDENT and NUMBER (since multiple can exist in a singular line, unlike
+// assignment)
+
+// NOTE to Greyson for formatting (because Prettier messes it up): may want to move each symbol onto its own line
+COMPARISON: '<' | '<=' | '>' | '>=' | '==' | '!=';
 
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 

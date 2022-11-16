@@ -11,11 +11,8 @@ expression:
 	| expression 'and' expression
 	| 'not' expression
 	| expression COMPARISON expression
-	| expression '*' expression
-	| expression '/' expression
-	| expression '%' expression
-	| expression '+' expression
-	| expression '-' expression
+	| expression ('*' | '/' | '%') expression
+	| expression ('+' | '-') expression
 	| '(' expression ')'
 	| IDENT
 	| VALUE;

@@ -13,7 +13,10 @@ expression: orExpression;
 orExpression: andExpression ('or' andExpression)*;
 
 andExpression:
-	arithmeticExpression ('and' arithmeticExpression)*;
+	notExpression ('and' notExpression)*;
+
+notExpression:
+	'not'? arithmeticExpression;
 
 // NOTE to Greyson for formatting (because Prettier messes it up): had this expression on 1 line, not 3
 arithmeticExpression:

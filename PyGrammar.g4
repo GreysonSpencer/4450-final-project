@@ -37,7 +37,9 @@ precedenceExpression:
 	// TODO: implement 'not' in a way that maintains the expression flow and includes the correct precedence
 	| '(' expression ')'
 	| IDENT
-	| NUMBER;
+	| NUMBER
+	| STRING
+	| BOOLEAN;
 
 assignment:
 	| IDENT '=' expression
@@ -56,6 +58,14 @@ COMPARISON: '<' | '<=' | '>' | '>=' | '==' | '!=';
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 
 NUMBER: '-'? [0-9]+ ('.' [0-9]+)?;
+
+BOOLEAN: 'True' | 'False';
+
+STRING: STRING_SINGLE | STRING_DOUBLE;
+
+STRING_DOUBLE: '"' ~["]* '"' ;
+
+STRING_SINGLE: '\'' ~[']* '\'';
 
 NEWLINE: [\r\n]+;
 

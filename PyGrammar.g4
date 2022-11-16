@@ -3,14 +3,17 @@ grammar PyGrammar;
 program: (function NEWLINE)+;
 
 // NOTE to Greyson for formatting (because Prettier messes it up): had these on their own lines 
-function: | assignment | expression;
+function: 
+	| assignment 
+	| expression;
 
 // NOTE to Greyson for formatting (because Prettier messes it up): move 'orExpression;' to its own
 // TODO: implement conditional statements for the comparison operators within the correct precedence
 expression: orExpression;
 
 // NOTE to Greyson for formatting (because Prettier messes it up): move the expression passed 'orExpression:' to its own line
-orExpression: andExpression ('or' andExpression)*;
+orExpression: 
+	andExpression ('or' andExpression)*;
 
 andExpression:
 	notExpression ('and' notExpression)*;

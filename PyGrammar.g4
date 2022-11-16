@@ -19,7 +19,10 @@ andExpression:
 	notExpression ('and' notExpression)*;
 
 notExpression:
-	('not')* arithmeticExpression;
+	('not')* comparisonExpression;
+
+comparisonExpression:
+	arithmeticExpression (COMPARISON arithmeticExpression)*;
 
 // NOTE to Greyson for formatting (because Prettier messes it up): had this expression on 1 line, not 3
 arithmeticExpression:

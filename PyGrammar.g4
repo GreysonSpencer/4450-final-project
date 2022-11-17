@@ -11,7 +11,7 @@ expression:
 	| IDENT
 	| BOOLEAN
 	| STRING
-	| NUMBER;
+	| ('-')? NUMBER;
 
 assignment: | IDENT ASSIGNMENT expression;
 
@@ -19,7 +19,7 @@ ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
 
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 
-NUMBER: '-'? [0-9]+ ('.' [0-9]+)?;
+NUMBER: [0-9]+ ('.' [0-9]+)?;
 
 BOOLEAN: 'True' | 'False';
 

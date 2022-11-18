@@ -7,6 +7,10 @@ function: | assignment | expression;
 expression:
 	expression ('*' | '/' | '%') expression
 	| expression ('+' | '-') expression
+	| expression COMPARISON expression
+	| ('not')+ expression
+	| expression 'and' expression
+	| expression 'or' expression
 	| '(' expression ')'
 	| IDENT
 	| BOOLEAN
@@ -16,6 +20,8 @@ expression:
 assignment: | IDENT ASSIGNMENT expression;
 
 ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
+
+COMPARISON: '>' | '>=' | '<' | '<=' | '==';
 
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 

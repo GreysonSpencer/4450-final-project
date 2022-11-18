@@ -8,12 +8,12 @@ ifstatement:
   if_block (elif_block)* (else_block)?;
 
 block:
-	('\t') function
-	| ('\t') block
+	(('\t')+ function NEWLINE?)+
+	//| ('\t') block
 	;
 
 if_block:
-  ('if') expression (':') NEWLINE block //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.
+  ('if') expression (':') NEWLINE block+ //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.
 ;
 
 elif_block:

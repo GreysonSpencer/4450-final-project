@@ -8,11 +8,11 @@ ifstatement:
   if_block (elif_block)* (else_block)?;
 
 block:
-	(TAB+ function NEWLINE?)+
+	(TAB+ function NEWLINE?)+ // TAB FUNCTION TAB FUNCTION?
 	;
 
 if_block:
-  ('if') expression (':') NEWLINE block+ //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.
+  ('if') expression (':') NEWLINE block //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.
 ;
 
 elif_block:
@@ -20,7 +20,7 @@ elif_block:
 ;
 
 else_block:
-  ('else:') NEWLINE ('\t') function
+  ('else:') NEWLINE ('\t') block
 ;
 expression:
 	expression ('*' | '/' | '%') expression

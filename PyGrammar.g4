@@ -2,7 +2,7 @@ grammar PyGrammar;
 
 program: (function NEWLINE)*;
 
-function: | ifstatement | assignment | expression;
+function: ifstatement | assignment | expression;
 
 ifstatement:
   if_block (elif_block)* (else_block)?;

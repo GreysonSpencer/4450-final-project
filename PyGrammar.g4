@@ -1,42 +1,51 @@
 grammar PyGrammar;
 
-program: (function NEWLINE)+;
+program: (function NEWLINE)*;
 
-function: 
-	| assignment 
-	| expression;
+function: | ifstatement | assignment | expression;
 
-expression: 
-	| expression 'or' expression
-	| expression 'and' expression
-	| 'not' expression
-	| expression COMPARISON expression
-	| expression ('*' | '/' | '%') expression
+ifstatement:
+  if_block (elif_block)* (else_block)?;
+
+if_block:
+  ('if') expression (':') NEWLINE ('\t') function
+;
+
+elif_block:
+  ('else if') expression (':') NEWLINE ('\t') function
+;
+
+else_block:
+  ('else:') NEWLINE ('\t') function
+;
+expression:
+	expression ('*' | '/' | '%') expression
 	| expression ('+' | '-') expression
+	| expression COMPARISON expression
+	| ('not')+ expression
+	| expression 'and' expression
+	| expression 'or' expression
 	| '(' expression ')'
 	| IDENT
-	| VALUE;
+	| BOOLEAN
+	| STRING
+	| ('-')? NUMBER;
 
-assignment:
-	| IDENT '=' expression
-	| IDENT '+=' expression
-	| IDENT '-=' expression
-	| IDENT '*=' expression
-	| IDENT '/=' expression;
+assignment: | IDENT ASSIGNMENT expression;
 
-COMPARISON: '<' | '<=' | '>' | '>=' | '==' | '!=';
+ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
+
+COMPARISON: '>' | '>=' | '<' | '<=' | '==';
 
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 
-VALUE: (NUMBER | BOOLEAN | STRING) NEWLINE; 
-
-NUMBER: '-'? [0-9]+ ('.' [0-9]+)?;
+NUMBER: [0-9]+ ('.' [0-9]+)?;
 
 BOOLEAN: 'True' | 'False';
 
 STRING: STRING_SINGLE | STRING_DOUBLE;
 
-STRING_DOUBLE: '"' ~["]* '"' ;
+STRING_DOUBLE: '"' ~["]* '"';
 
 STRING_SINGLE: '\'' ~[']* '\'';
 

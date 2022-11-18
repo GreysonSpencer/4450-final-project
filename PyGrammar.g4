@@ -1,6 +1,6 @@
 grammar PyGrammar;
 
-program: (function NEWLINE)*;
+program: (function NEWLINE)*; //changed from + to * since python should be able to parse an empty file ig.
 
 function: ifstatement | assignment | expression;
 
@@ -8,7 +8,7 @@ ifstatement:
   if_block (elif_block)* (else_block)?;
 
 if_block:
-  ('if') expression (':') NEWLINE ('\t') function
+  ('if') expression (':') NEWLINE ('\t') function //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.
 ;
 
 elif_block:
@@ -31,7 +31,7 @@ expression:
 	| STRING
 	| ('-')? NUMBER;
 
-assignment: | IDENT ASSIGNMENT expression;
+assignment: IDENT ASSIGNMENT expression;
 
 ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
 

@@ -8,7 +8,7 @@ ifstatement:
   if_block (elif_block)* (else_block)?;
 
 block:
-	(('\t')+ function NEWLINE?)+
+	(TAB+ function NEWLINE?)+
 	;
 
 if_block:
@@ -54,6 +54,8 @@ STRING_DOUBLE: '"' ~["]* '"';
 STRING_SINGLE: '\'' ~[']* '\'';
 
 NEWLINE: [\r\n]+;
+
+TAB: ('\t');
 
 WHITESPACE:
 	[ ]+ -> skip; //Currently ignored, will need to fix for deliverable 2

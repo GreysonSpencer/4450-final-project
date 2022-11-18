@@ -55,7 +55,7 @@ STRING_SINGLE: '\'' ~[']* '\'';
 
 NEWLINE: [\r\n]+;
 
-TAB: ('\t');
+TAB: '\t';
 
 WHITESPACE:
 	[ ]+ -> skip; //Currently ignored, will need to fix for deliverable 2

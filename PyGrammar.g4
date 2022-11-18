@@ -9,7 +9,6 @@ ifstatement:
 
 block:
 	(('\t')+ function NEWLINE?)+
-	//| ('\t') block
 	;
 
 if_block:

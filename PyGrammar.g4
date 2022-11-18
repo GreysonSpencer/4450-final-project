@@ -7,12 +7,17 @@ function: ifstatement | assignment | expression;
 ifstatement:
   if_block (elif_block)* (else_block)?;
 
+block:
+	('\t') function
+	| ('\t') block
+	;
+
 if_block:
-  ('if') expression (':') NEWLINE ('\t') function //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.
+  ('if') expression (':') NEWLINE block //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.
 ;
 
 elif_block:
-  ('else if') expression (':') NEWLINE ('\t') function
+  ('else if') expression (':') NEWLINE block
 ;
 
 else_block:

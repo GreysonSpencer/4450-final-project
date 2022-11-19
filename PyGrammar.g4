@@ -1,8 +1,24 @@
 grammar PyGrammar;
 
-program: (function NEWLINE)+;
+program: (function NEWLINE)*;
 
-function: | assignment | expression;
+
+function: ifstatement | assignment | expression;
+
+ifstatement:
+  if_block (elif_block)* (else_block)?;
+
+block:
+	TAB function (NEWLINE TAB function)* NEWLINE?;
+
+if_block:
+  ('if') expression (':') NEWLINE block;
+
+elif_block:
+  ('elif') expression (':') NEWLINE block;
+
+else_block:
+  ('else:') NEWLINE block;
 
 expression:
 	expression ('*' | '/' | '%') expression
@@ -17,7 +33,7 @@ expression:
 	| STRING
 	| ('-')? NUMBER;
 
-assignment: | IDENT ASSIGNMENT expression;
+assignment: IDENT ASSIGNMENT expression;
 
 ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
 
@@ -37,7 +53,9 @@ STRING_SINGLE: '\'' ~[']* '\'';
 
 NEWLINE: [\r\n]+;
 
+TAB: '\t';
+
 WHITESPACE:
-	[ ]+ -> skip; //Currently ignored, will need to fix for deliverable 2
+	[ ]+ -> skip; 
 
 //COMMENT: '#' ~NEWLINE; Currently ignored, will be fully implemented for deliverable 3

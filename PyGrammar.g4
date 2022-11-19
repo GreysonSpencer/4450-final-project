@@ -1,23 +1,26 @@
 grammar PyGrammar;
 
-program: (function NEWLINE)*; //changed from + to * since python should be able to parse an empty file ig.
+program: (function NEWLINE)*;
 
 function: ifstatement | assignment | expression;
 
 ifstatement:
   if_block (elif_block)* (else_block)?;
 
+block:
+	TAB+ function (NEWLINE TAB+ function)*;
+
 if_block:
-  ('if') expression (':') NEWLINE ('\t') function //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.
-;
+  ('if') expression (':') NEWLINE TAB block;
 
 elif_block:
-  ('else if') expression (':') NEWLINE ('\t') function
-;
+  ('else if') expression (':') NEWLINE TAB block;
+
 
 else_block:
-  ('else:') NEWLINE ('\t') function
-;
+  ('else:') NEWLINE TAB block;
+
+
 expression:
 	expression ('*' | '/' | '%') expression
 	| expression ('+' | '-') expression
@@ -51,7 +54,9 @@ STRING_SINGLE: '\'' ~[']* '\'';
 
 NEWLINE: [\r\n]+;
 
+TAB: '\t';
+
 WHITESPACE:
-	[ ]+ -> skip; //Currently ignored, will need to fix for deliverable 2
+	[ ]+ -> skip; 
 
 //COMMENT: '#' ~NEWLINE; Currently ignored, will be fully implemented for deliverable 3

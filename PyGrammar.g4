@@ -14,7 +14,7 @@ if_block:
   ('if') expression (':') NEWLINE block;
 
 elif_block:
-  ('else if') expression (':') NEWLINE block;
+  ('elif') expression (':') NEWLINE block;
 
 
 else_block:

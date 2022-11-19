@@ -1,15 +1,47 @@
 grammar PyGrammar;
 
-program: (function NEWLINE)*; //changed from + to * since python should be able to parse an empty file ig.
+program: (line)*; //changed from + to * since python should be able to parse an empty file ig.
 
 function: ifstatement | assignment | expression;
 
 ifstatement:
   if_block (elif_block)* (else_block)?;
 
+// block:
+// 	| TAB+ function (NEWLINE TAB+ function)* 
+// 	| (NEWLINE TAB+ block)*
+// 	;   // TAB FUNCTION TAB FUNCTION?
+
+line: function NEWLINE?;
+
 block:
-	(TAB+ function NEWLINE?)+ // TAB FUNCTION TAB FUNCTION?
+	| (TAB TAB TAB line)*
+	| (TAB TAB line)*
+	| (TAB line)*
 	;
+
+// block2:
+// 	| TAB function (NEWLINE TAB TAB function)*
+// 	| (NEWLINE TAB TAB block)*
+// 	;
+
+/*
+Idea: two things that will be created in parallel
+
+tabs
+blocks
+
+each line gets a tab for each block it's nested under
+
+block
+tab
+tab
+tabblock
+tabtab
+tabtab
+
+ */
+
 
 if_block:
   ('if') expression (':') NEWLINE block //Not sure on the function on the end. Maybe "codeblock" or something? needs further tests.

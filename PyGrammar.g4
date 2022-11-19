@@ -8,17 +8,17 @@ ifstatement:
   if_block (elif_block)* (else_block)?;
 
 block:
-	TAB+ function (NEWLINE TAB+ function)*;
+	TAB function (NEWLINE TAB function)*;
 
 if_block:
-  ('if') expression (':') NEWLINE TAB block;
+  ('if') expression (':') NEWLINE block;
 
 elif_block:
-  ('else if') expression (':') NEWLINE TAB block;
+  ('else if') expression (':') NEWLINE block;
 
 
 else_block:
-  ('else:') NEWLINE TAB block;
+  ('else:') NEWLINE block;
 
 
 expression:

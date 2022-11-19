@@ -2,6 +2,7 @@ grammar PyGrammar;
 
 program: (function NEWLINE)*;
 
+
 function: ifstatement | assignment | expression;
 
 ifstatement:
@@ -16,10 +17,8 @@ if_block:
 elif_block:
   ('elif') expression (':') NEWLINE block;
 
-
 else_block:
   ('else:') NEWLINE block;
-
 
 expression:
 	expression ('*' | '/' | '%') expression

@@ -58,4 +58,4 @@ TAB: '\t';
 WHITESPACE:
 	[ ]+ -> skip; 
 
-//COMMENT: '#' ~NEWLINE; Currently ignored, will be fully implemented for deliverable 3
+COMMENT: '#' ~NEWLINE;

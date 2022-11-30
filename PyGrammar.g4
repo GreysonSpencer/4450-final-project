@@ -10,9 +10,16 @@ while_loop: 'while' expression ':' NEWLINE block;
 
 for_loop: 'for' expression ':' NEWLINE block;
 
-if_statement: if_block (elif_block)* (else_block)?;
+if_statement: if_block (NEWLINE elif_block)* (NEWLINE else_block)?;
 
-block: TAB function (NEWLINE TAB function)* NEWLINE?;
+//block: TAB function (NEWLINE TAB function)* NEWLINE?;
+
+block:
+// Recursive block definition
+	//| (TAB block)+ NEWLINE
+// Adding as many lines in the block as you need
+	| (TAB function NEWLINE)* TAB function
+	;
 
 if_block: ('if') expression (':') NEWLINE block;
 

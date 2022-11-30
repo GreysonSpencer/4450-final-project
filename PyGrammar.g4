@@ -64,4 +64,4 @@ TAB: '    ' | '\t';
 
 WHITESPACE: [ ]+ -> skip;
 
-COMMENT: '#' ~[\r\n]*;
+COMMENT: '#' ~[\r\n]* NEWLINE -> skip;

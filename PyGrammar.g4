@@ -3,9 +3,17 @@ grammar PyGrammar;
 program: (function NEWLINE)*;
 
 
-function: ifstatement | assignment | expression;
+function: control_statement | assignment | expression;
 
-ifstatement:
+control_statement: while_loop | for_loop | if_statement;
+
+while_loop:
+	'while' expression ':' NEWLINE block;
+
+for_loop:
+	'for' expression ':' NEWLINE block;
+
+if_statement:
   if_block (elif_block)* (else_block)?;
 
 block:
@@ -53,7 +61,7 @@ STRING_SINGLE: '\'' ~[']* '\'';
 
 NEWLINE: [\r\n]+;
 
-TAB: '\t';
+TAB: '    ' | '\t';
 
 WHITESPACE:
 	[ ]+ -> skip; 

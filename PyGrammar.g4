@@ -1,6 +1,6 @@
 grammar PyGrammar;
 
-program: block[0];
+program: block[0] EOF;
 
 function: assignment | expression;
 

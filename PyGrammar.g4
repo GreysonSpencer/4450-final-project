@@ -12,7 +12,7 @@ block
 	  ((b+=TAB)* {$x==$b.size()}? 'else:' NEWLINE block[$x+1] {$b.clear();})? NEWLINE?
 
 	| (t+=TAB)* {$x==$t.size()}? 'while' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
-	| (t+=TAB)* {$x==$t.size()}? 'for' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
+	| (t+=TAB)* {$x==$t.size()}? 'for' iterative_statement ':' NEWLINE block[$t.size()+1] {$t.clear();}
 	| ((t+=TAB)* {$x==$t.size()}? function NEWLINE {$t.clear();})+
 	)+
 	;

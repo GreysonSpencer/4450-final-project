@@ -1,33 +1,10 @@
 grammar PyGrammar;
 
-//program: (function NEWLINE)*;
 program: block[0];
 
-function: /*control_statement |*/ assignment | expression;
-
-//control_statement: while_loop | for_loop | if_statement;
-
-//while_loop: (t+=TAB)* 'while' expression ':' NEWLINE block[t];
-
-//for_loop: (t+=TAB)* 'for' expression ':' NEWLINE block[t];
-
-//if_statement: if_block (NEWLINE elif_block)* (NEWLINE else_block)?;
-
-//block: TAB function (NEWLINE TAB function)* NEWLINE?;
-
-// block:
-// // Recursive block definition
-// 	//| (TAB block)+ NEWLINE
-// // Adding as many lines in the block as you need
-// 	| (TAB function NEWLINE)* TAB function
-//	;
+function: assignment | expression;
 
 // x = number of tabs for the current block
-// block
-// [int x]: 
-// 	| (t+=TAB)+ {$x==t}? function NEWLINE
-// 	| {$x+1==t} block[{$x+1}] NEWLINE;
-
 block
 [int x]: 
 	( (t+=TAB)* {$x==$t.size()}? 'if' expression ':' NEWLINE block[$x+1] {$t.clear();}
@@ -39,14 +16,6 @@ block
 	| ((t+=TAB)* {$x==$t.size()}? function NEWLINE {$t.clear();})+
 	)+
 	;
-
-//data: ( c+=CHARACTER)+ {$c.size()<=4}? ;
-
-//if_block: (t+=TAB)* ('if') expression (':') NEWLINE block[t];
-
-//elif_block: (t+=TAB)* ('elif') expression (':') NEWLINE block[t];
-
-//else_block: (t+=TAB)* ('else:') NEWLINE block[t];
 
 expression:
 	expression ('*' | '/' | '%') expression

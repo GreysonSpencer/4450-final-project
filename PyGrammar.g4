@@ -1,24 +1,21 @@
 grammar PyGrammar;
 
-program: (function NEWLINE)*;
+program: block[0];
 
-function: control_statement | assignment | expression;
+function: assignment | expression;
 
-control_statement: while_loop | for_loop | if_statement;
+// x = number of tabs for the current block
+block
+[int x]: 
+	( (t+=TAB)* {$x==$t.size()}? 'if' expression ':' NEWLINE block[$x+1] {$t.clear();}
+	  ((a+=TAB)* {$x==$a.size()}? 'elif' expression ':' NEWLINE block[$x+1] {$a.clear();})* 
+	  ((b+=TAB)* {$x==$b.size()}? 'else:' NEWLINE block[$x+1] {$b.clear();})? NEWLINE?
 
-while_loop: 'while' expression ':' NEWLINE block;
-
-for_loop: 'for' expression ':' NEWLINE block;
-
-if_statement: if_block (elif_block)* (else_block)?;
-
-block: TAB function (NEWLINE TAB function)* NEWLINE?;
-
-if_block: ('if') expression (':') NEWLINE block;
-
-elif_block: ('elif') expression (':') NEWLINE block;
-
-else_block: ('else:') NEWLINE block;
+	| (t+=TAB)* {$x==$t.size()}? 'while' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
+	| (t+=TAB)* {$x==$t.size()}? 'for' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
+	| ((t+=TAB)* {$x==$t.size()}? function NEWLINE {$t.clear();})+
+	)+
+	;
 
 expression:
 	expression ('*' | '/' | '%') expression
@@ -57,4 +54,4 @@ TAB: '    ' | '\t';
 
 WHITESPACE: [ ]+ -> skip;
 
-COMMENT: '#' ~[\r\n]*;
+COMMENT: '#' ~[\r\n]* NEWLINE -> skip;

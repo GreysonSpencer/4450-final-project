@@ -16,16 +16,39 @@ Variable1 = (variable2 = 3) + 1
 Variable3 = 1 +*/ 3
 ```
 ### Phase 2
-Implementation of If/Else statements and comparison statements such as
+Implementation of If/Else/Elif statements and comparison statements
 ```
-if(Variable1 == True):
+if Variable1 == True :
     Variable2 = True
-else if(Variable3 <= 7):
+elif Variable3 <= 7:
     Variable2 = False
 else:
     Variable2 = 5
 ```
 ### Phase 3
-Implementation of comments, as well as some other things.
+Implementation of comments, for and while.
+Example of a valid comment
+```
+# This is a comment example!
+if True:
+    x = 1
+```
+Example of a valid for and while loop
+```
+while True:
+    x += 1
+
+for i in variable:
+    i++
+```
+
+Examples of invalid for and while Loops
+```
+for x + 1:
+    x+=x
+
+while:
+    # Code here
+```
 ## Running and Installation
 TODO: Put full instructions here

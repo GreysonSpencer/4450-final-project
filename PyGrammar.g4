@@ -34,7 +34,7 @@ assignment: IDENT ASSIGNMENT expression;
 
 ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
 
-COMPARISON: '>' | '>=' | '<' | '<=' | '==';
+COMPARISON: '>' | '>=' | '<' | '<=' | '==' | 'is' | 'in';
 
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 

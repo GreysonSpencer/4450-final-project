@@ -31,7 +31,10 @@ function: /*control_statement |*/ assignment | expression;
 block
 [int x]: 
 	|
-	( (t+=TAB)* {$x==$t.size()}? 'if' expression ':' NEWLINE block[$t.size()+1] ({$x==$t.size()}? 'elif' expression ':' NEWLINE block[$t.size()+1])* {$x==$t.size()}? ('else:' NEWLINE block[$t.size()+1])?
+	( (t+=TAB)* {$x==$t.size()}? 'if' expression ':' NEWLINE block[$x+1] {$t.clear();} 
+	  ((t+=TAB)* {$x==$t.size()}? 'elif' expression ':' NEWLINE block[$x+1] {$t.clear();})* 
+	  ((t+=TAB)* {$x==$t.size()}? 'else:' NEWLINE block[$x+1] {$t.clear();})? 
+
 	| (t+=TAB)* {$x==$t.size()}? 'while' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
 	| (t+=TAB)* {$x==$t.size()}? 'for' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
 	| ((t+=TAB)* {$x==$t.size()}? function NEWLINE {$t.clear();})+

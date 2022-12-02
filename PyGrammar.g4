@@ -17,6 +17,16 @@ block
 	)+
 	;
 
+iterative_statement:
+	| IDENT 'in' IDENT
+	| IDENT 'in range('(NUMBER | IDENT)')'
+	| IDENT 'in' ARRAY_DEFINITION
+;
+
+ARRAY_DEFINITION:
+	'[' (IDENT| NUMBER) (','IDENT | NUMBER)*']'
+;
+
 expression:
 	expression ('*' | '/' | '%') expression
 	| expression ('+' | '-') expression
@@ -34,7 +44,7 @@ assignment: IDENT ASSIGNMENT expression;
 
 ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
 
-COMPARISON: '>' | '>=' | '<' | '<=' | '==' | 'is' | 'in';
+COMPARISON: '>' | '>=' | '<' | '<=' | '==' | 'is';
 
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 

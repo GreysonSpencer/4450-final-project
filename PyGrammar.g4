@@ -12,10 +12,18 @@ block
 	  ((b+=TAB)* {$x==$b.size()}? 'else:' NEWLINE block[$x+1] {$b.clear();})? NEWLINE?
 
 	| (t+=TAB)* {$x==$t.size()}? 'while' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
-	| (t+=TAB)* {$x==$t.size()}? 'for' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
+	| (t+=TAB)* {$x==$t.size()}? 'for' iterative_statement ':' NEWLINE block[$t.size()+1] {$t.clear();}
 	| ((t+=TAB)* {$x==$t.size()}? function NEWLINE {$t.clear();})+
 	)+
 	;
+
+iterative_statement:
+	| IDENT 'in' IDENT
+	| IDENT 'in range('(NUMBER | IDENT)')'
+	| IDENT 'in' arraydef
+;
+
+
 
 expression:
 	expression ('*' | '/' | '%') expression
@@ -30,11 +38,16 @@ expression:
 	| STRING
 	| ('-')? NUMBER;
 
-assignment: IDENT ASSIGNMENT expression;
+assignment: 
+	IDENT ASSIGNMENT arraydef
+	| IDENT ASSIGNMENT expression 
+	;
+
+arraydef: '[' (IDENT | NUMBER) (',' (IDENT | NUMBER))* ']';
 
 ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
 
-COMPARISON: '>' | '>=' | '<' | '<=' | '==' | 'is' | 'in';
+COMPARISON: '>' | '>=' | '<' | '<=' | '==' | 'is';
 
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 

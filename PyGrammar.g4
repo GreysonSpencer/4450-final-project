@@ -20,12 +20,10 @@ block
 iterative_statement:
 	| IDENT 'in' IDENT
 	| IDENT 'in range('(NUMBER | IDENT)')'
-	| IDENT 'in' ARRAY_DEFINITION
+	| IDENT 'in' arraydef
 ;
 
-ARRAY_DEFINITION:
-	'[' (IDENT| NUMBER) (','IDENT | NUMBER)*']'
-;
+
 
 expression:
 	expression ('*' | '/' | '%') expression
@@ -40,7 +38,12 @@ expression:
 	| STRING
 	| ('-')? NUMBER;
 
-assignment: IDENT ASSIGNMENT expression;
+assignment: 
+	IDENT ASSIGNMENT arraydef
+	| IDENT ASSIGNMENT expression 
+	;
+
+arraydef: '[' (IDENT | NUMBER) (',' (IDENT | NUMBER))* ']';
 
 ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
 

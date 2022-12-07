@@ -36,11 +36,15 @@ expression:
 	| ('not')+ expression
 	| expression 'and' expression
 	| expression 'or' expression
+	| functioncall
 	| '(' expression ')'
 	| IDENT
 	| BOOLEAN
 	| STRING
 	| ('-')? NUMBER;
+
+functioncall:
+	IDENT '(' (loc ',')* (loc)? ')';
 
 assignment: 
 	IDENT ASSIGNMENT arraydef

@@ -2,7 +2,7 @@ grammar PyGrammar;
 
 program: block[0] EOF;
 
-function: assignment | expression;
+loc: assignment | expression;
 
 // x = number of tabs for the current block
 block
@@ -13,7 +13,7 @@ block
 
 	| (t+=TAB)* {$x==$t.size()}? 'while' expression ':' NEWLINE block[$t.size()+1] {$t.clear();}
 	| (t+=TAB)* {$x==$t.size()}? 'for' iterative_statement ':' NEWLINE block[$t.size()+1] {$t.clear();}
-	| ((t+=TAB)* {$x==$t.size()}? function NEWLINE {$t.clear();})+
+	| ((t+=TAB)* {$x==$t.size()}? loc NEWLINE {$t.clear();})+
 	)+
 	;
 

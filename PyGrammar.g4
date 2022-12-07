@@ -7,19 +7,19 @@ loc: assignment | expression;
 // x = number of tabs for the current block
 // is_func indicates if the block is within a function
 block
-[int x, boolean is_func]: 
+[int x, boolean is_func]
+locals [int i = 0]: 
 	( 
-	  (t+=TAB)* {$x==$t.size()}? 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' 
-	  NEWLINE block[$t.size()+1, true] {$t.clear();}
+	  {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' NEWLINE block[$x+1, true]
 
-	| (t+=TAB)* {$x==$t.size()}? 'if' expression ':' NEWLINE block[$x+1, $is_func] {$t.clear();}
-	  ((a+=TAB)* {$x==$a.size()}? 'elif' expression ':' NEWLINE block[$x+1, $is_func] {$a.clear();})* 
-	  ((b+=TAB)* {$x==$b.size()}? 'else:' NEWLINE block[$x+1, $is_func] {$b.clear();})? NEWLINE?
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'if' expression ':' NEWLINE block[$x+1, $is_func]
+	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'elif' expression ':' NEWLINE block[$x+1, $is_func])* 
+	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'else:' NEWLINE block[$x+1, $is_func])? NEWLINE?
 
-	| (t+=TAB)* {$x==$t.size()}? 'while' expression ':' NEWLINE block[$t.size()+1, $is_func] {$t.clear();}
-	| (t+=TAB)* {$x==$t.size()}? 'for' iterative_statement ':' NEWLINE block[$t.size()+1, $is_func] {$t.clear();}
-	| (t+=TAB)* {$x==$t.size() && $is_func}? 'return' expression? NEWLINE {$t.clear();}
-	| ((t+=TAB)* {$x==$t.size()}? loc NEWLINE {$t.clear();})+
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'while' expression ':' NEWLINE block[$x+1, $is_func]
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'for' iterative_statement ':' NEWLINE block[$x+1, $is_func]
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i && $is_func}? (t+=TAB)* 'return' expression? NEWLINE
+	| ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* loc NEWLINE)+
 	)+
 	;
 

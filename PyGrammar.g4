@@ -8,8 +8,8 @@ loc: assignment | expression;
 block
 [int x]: 
 	( 
-	  (t+=TAB)* {$x==t.size()}? 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' 
-	  NEWLINE block[$t.size()+1] {t.clear();}
+	  (t+=TAB)* {$x==$t.size()}? 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' 
+	  NEWLINE block[$t.size()+1] {$t.clear();}
 
 	| (t+=TAB)* {$x==$t.size()}? 'if' expression ':' NEWLINE block[$x+1] {$t.clear();}
 	  ((a+=TAB)* {$x==$a.size()}? 'elif' expression ':' NEWLINE block[$x+1] {$a.clear();})* 

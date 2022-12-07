@@ -7,7 +7,11 @@ loc: assignment | expression;
 // x = number of tabs for the current block
 block
 [int x]: 
-	( (t+=TAB)* {$x==$t.size()}? 'if' expression ':' NEWLINE block[$x+1] {$t.clear();}
+	( 
+	  (t+=TAB)* {$x==t.size()}? 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' 
+	  NEWLINE block[$t.size()+1] {t.clear();}
+
+	| (t+=TAB)* {$x==$t.size()}? 'if' expression ':' NEWLINE block[$x+1] {$t.clear();}
 	  ((a+=TAB)* {$x==$a.size()}? 'elif' expression ':' NEWLINE block[$x+1] {$a.clear();})* 
 	  ((b+=TAB)* {$x==$b.size()}? 'else:' NEWLINE block[$x+1] {$b.clear();})? NEWLINE?
 

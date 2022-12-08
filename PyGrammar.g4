@@ -1,25 +1,30 @@
 grammar PyGrammar;
 
-program: block[0, false] EOF;
+program: block[0, false, false] EOF;
 
 loc: assignment | expression;
 
 // x = number of tabs for the current block
 // is_func indicates if the block is within a function
+// is_iterable indicates if the block is within a for or while loop
 block
-[int x, boolean is_func]
+[int x, boolean is_func, boolean is_iterable]
 locals [int i = 0]: 
 	( 
-	  {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' NEWLINE block[$x+1, true]
+	  {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' NEWLINE block[$x+1, true, $is_iterable]
 
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'if' expression ':' NEWLINE block[$x+1, $is_func]
-	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'elif' expression ':' NEWLINE block[$x+1, $is_func])* 
-	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'else:' NEWLINE block[$x+1, $is_func])? NEWLINE?
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'if' expression ':' NEWLINE block[$x+1, $is_func, $is_iterable]
+	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'elif' expression ':' NEWLINE block[$x+1, $is_func, $is_iterable])* 
+	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'else:' NEWLINE block[$x+1, $is_func, $is_iterable])? NEWLINE?
 
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'while' expression ':' NEWLINE block[$x+1, $is_func]
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'for' iterative_statement ':' NEWLINE block[$x+1, $is_func]
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i && $is_func}? (t+=TAB)* 'return' expression? NEWLINE
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'while' expression ':' NEWLINE block[$x+1, $is_func, true]
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'for' iterative_statement ':' NEWLINE block[$x+1, $is_func, true]
+
 	| ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* loc NEWLINE)+
+	
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i && $is_func}? (t+=TAB)* 'return' expression? NEWLINE
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i && $is_iterable}? (t+=TAB)* 'break' expression? NEWLINE
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i && $is_iterable}? (t+=TAB)* 'continue' expression? NEWLINE
 	)+
 	;
 

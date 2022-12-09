@@ -11,20 +11,20 @@ block
 [int x, boolean is_func, boolean is_iterable]
 locals [int i = 0]: 
 	( 
-	  {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' NEWLINE block[$x+1, true, $is_iterable]
+	  {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* 'def ' IDENT '(' (IDENT ',')* (IDENT | assignment)? (','assignment)* '):' NEWLINE block[$x+1, true, $is_iterable]
 
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'if' expression ':' NEWLINE block[$x+1, $is_func, $is_iterable]
-	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'elif' expression ':' NEWLINE block[$x+1, $is_func, $is_iterable])* 
-	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'else:' NEWLINE block[$x+1, $is_func, $is_iterable])? NEWLINE?
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* 'if' expression ':' NEWLINE block[$x+1, $is_func, $is_iterable]
+	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* 'elif' expression ':' NEWLINE block[$x+1, $is_func, $is_iterable])* 
+	  ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* 'else:' NEWLINE block[$x+1, $is_func, $is_iterable])? NEWLINE?
 
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'while' expression ':' NEWLINE block[$x+1, $is_func, true]
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* 'for' iterative_statement ':' NEWLINE block[$x+1, $is_func, true]
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* 'while' expression ':' NEWLINE block[$x+1, $is_func, true]
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* 'for' iterative_statement ':' NEWLINE block[$x+1, $is_func, true]
 
-	| ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i}? (t+=TAB)* loc NEWLINE)+
+	| ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* loc NEWLINE)+
 	
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i && $is_func}? (t+=TAB)* 'return' expression? NEWLINE
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i && $is_iterable}? (t+=TAB)* 'break' expression? NEWLINE
-	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}System.out.println($i);}} {$x==$i && $is_iterable}? (t+=TAB)* 'continue' expression? NEWLINE
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i && $is_func}?<fail={"exit"}> (t+=TAB)* 'return' expression? NEWLINE
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i && $is_iterable}?<fail={"exit"}> (t+=TAB)* 'break' expression? NEWLINE
+	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i && $is_iterable}?<fail={"exit"}> (t+=TAB)* 'continue' expression? NEWLINE
 	)+
 	;
 

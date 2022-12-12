@@ -1,8 +1,12 @@
 # 4450-final-project
-
+## The team
+Tom Hagedorn
+Ryan Orf
+Greyson Spencer
+Nathan Toepke
 
 ## About
-Simple Parser using Antlr4 to parse Grammar
+Simple Parser using Antlr4 to parse Grammar in the python language.
 ### Phase 1
 Basic arithmetic expressions can be parsed such as 
 ```

@@ -20,7 +20,7 @@ Variable1 = (variable2 = 3) + 1
 Variable3 = 1 +*/ 3
 ```
 ### Phase 2
-Phase 2 includes the implementation of if/elif/else blocks and conditional statements. An if statement can be followed in direct succession by any number of if statements, any number of elif statements, or a singular else statement. If statements can also be nested inside another if/elif/else statement. The conditional operators that can be used to compare two expressions are: "<", "<=", ">", ">=", "==", "is", and "!=". The cases below demonstrate examples of valid expressions:
+Phase 2 includes the implementation of if/elif/else blocks and conditional statements. An if statement can be followed in direct succession by any number of if statements, any number of elif statements, or a singular else statement. If statements can also be nested inside another if/elif/else statement. The conditional operators that can be used to compare two expressions are: "<", "<=", ">", ">=", "==", "is", "!=", "and", "or", and "not". The cases below demonstrate examples of valid expressions:
 ```
 if Variable1 == True :
     Variable2 = True
@@ -35,7 +35,7 @@ if Variable1 >= 5 and not Variable2 :
     Variable3 = 7
 ```
 ### Phase 3
-Phase 3 includes the implementation of comments, while loops, and for loops. A comment is simply a "#" symbol followed by the rest of the characters on that line. Comments can have their own line or can start following code on a line. A while loop is defined as the "while" keyword followed by some expression to be evaluated, a colon (":"), and any number of lines of expressions indented once more so than the line containing the while expression. Similarly, a for loop is defined as the "for" keyword followed by some expression to be evaluated, a colon (":"), and any number of lines of expressions indented once more so than the line containing the for expression. Unlike the while expression, an expression used in a for expression contains the "in" keyword (see a valid example below). While and for loops can be nested. 
+Phase 3 includes the implementation of comments, while loops, and for loops. A comment is simply a "#" symbol followed by the rest of the characters on that line. Comments can have their own line or can start following code on a line. A while loop is defined as the "while" keyword followed by some expression to be evaluated, a colon (":"), and any number of lines of expressions indented once more so than the line containing the while expression. Similarly, a for loop is defined as the "for" keyword followed by some expression to be evaluated, a colon (":"), and any number of lines of expressions indented once more so than the line containing the for expression. Unlike the while expression, an expression used in a for expression contains the "in" keyword (see a valid example below). While and for loops can be nested as well. Additionally, "break" and "continue" statmenets are also permitted.
 Example of a valid comment:
 ```
 # This is a comment example!
@@ -60,7 +60,7 @@ while:
     y = 7 + 2
 ```
 ### Phase 4
-Support for function calls and function implementations
+Phase 4 supports function implementations and function calls. A function is defined as the "def" keyword, followed by the name of the function (which follows the same naming convention as a variable name) that is immediately followed by a set of parentheses, and inside said parentheses is a comma-separated list of parameters that can be variables or assignments, followed by a colon (":") and any number of lines of expressions indented once more so than the line containing the function definition ("def") expression. It is important to note that, in line with proper function definition practices in python3, all and any variable parameters must precede all and any assignment parameters. Functions can also be nested, as is the case in python3. A function call involves the name of a function, immediately followed by a set of parentheses, and inside said parentheses is a comma-separated list of arguments that can be an assignment or expression. Note that a function call is evaluated as an expression. (Note that the inclusion of function calls allow for "in range()" statements to be used in for loops. Additionally, "return" statements are also permitted.
 Example of a function definition:
 ```
 def newFunc(x,y,z):

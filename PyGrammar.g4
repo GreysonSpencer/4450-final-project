@@ -62,7 +62,7 @@ arraydef: '[' (IDENT | NUMBER) (',' (IDENT | NUMBER))* ']';
 
 ASSIGNMENT: '=' | '+=' | '-=' | '*=' | '/=';
 
-COMPARISON: '>' | '>=' | '<' | '<=' | '==' | 'is';
+COMPARISON: '>' | '>=' | '<' | '<=' | '==' | 'is' | '!=';
 
 IDENT: [a-zA-Z_] [a-zA-Z0-9_]*;
 

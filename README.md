@@ -16,7 +16,7 @@ Variable1 = (variable2 = 3) + 1
 Variable3 = 1 +*/ 3
 ```
 ### Phase 2
-Implementation of If/Else/Elif statements and comparison statements
+Implementation of If/Elif/Else statements and comparison statements
 ```
 if Variable1 == True :
     Variable2 = True
@@ -24,6 +24,11 @@ elif Variable3 <= 7:
     Variable2 = False
 else:
     Variable2 = 5
+```
+Conditional statements can be evaluated now too:
+```
+if Variable1 >= 5 and not Variable2 :
+    Variable3 = 7
 ```
 ### Phase 3
 Implementation of comments, for and while.

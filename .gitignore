@@ -1,3 +1,8 @@
 .antlr
 .vscode
 Test python files
+*.interp
+*.tokens
+*.class
+*.java
+*.py

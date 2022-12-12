@@ -20,8 +20,8 @@ locals [int i = 0]:
 	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* 'while' expression ':' NEWLINE block[$x+1, $is_func, true]
 	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* 'for' iterative_statement ':' NEWLINE block[$x+1, $is_func, true]
 
-	| ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* loc NEWLINE)+
-	
+	| ({$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i}?<fail={"exit"}> (t+=TAB)* loc NEWLINE?)+
+
 	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i && $is_func}?<fail={"exit"}> (t+=TAB)* 'return' expression? NEWLINE
 	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i && $is_iterable}?<fail={"exit"}> (t+=TAB)* 'break' expression? NEWLINE
 	| {$i=0;if(_input.LT($i+1).getType() == TAB){while(_input.LT($i+1).getType() == TAB){$i++;}}} {$x==$i && $is_iterable}?<fail={"exit"}> (t+=TAB)* 'continue' expression? NEWLINE
@@ -33,8 +33,6 @@ iterative_statement:
 	| IDENT 'in range('(NUMBER | IDENT)')'
 	| IDENT 'in' arraydef
 ;
-
-
 
 expression:
 	expression ('*' | '/' | '%') expression

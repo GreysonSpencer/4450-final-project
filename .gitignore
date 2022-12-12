@@ -1,4 +1,8 @@
 .antlr
 .vscode
-*.jar
 Test python files
+*.interp
+*.tokens
+*.class
+*.java
+*.py

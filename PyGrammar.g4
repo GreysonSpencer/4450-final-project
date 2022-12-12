@@ -34,8 +34,6 @@ iterative_statement:
 	| IDENT 'in' arraydef
 ;
 
-
-
 expression:
 	expression ('*' | '/' | '%') expression
 	| expression ('+' | '-') expression

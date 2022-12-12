@@ -1,12 +1,12 @@
 # 4450-final-project
-## The team
+## The Team
 Tom Hagedorn
 Ryan Orf
 Greyson Spencer
 Nathan Toepke
 
 ## About
-Simple Parser using Antlr4 to parse Grammar in the python language.
+This is a simple parser which utilizes ANTLR4 in Java to parse a file written in the python3 language into a grammar visualized by a parse tree.
 ### Phase 1
 Phase 1 includes the implementation of arithmetic operators, assignment operators, and variable definitions. The arithmetic operators that can used to performed arithmetic operations on two expressions are: "+", "-", " * ", "/", and "%". Precedence rules are taken into account, which means that operations included within parentheses are executed first. The assignment operators that can be used to assign some expression value to a variable are: "=", "+=", "-=", " * = ", and "/=". The implementation of variable definition involves applying an aforementioned assingment operator on a variable (to be demonstrated below). The parser acknowledges the following types: number (integer or float, positive or negative), boolean, string (single- or double-quoted), and array. The cases below demonstrate examples of valid expressions:
 ```
@@ -72,9 +72,12 @@ Example of a function call
 Variable1 = newFunc(1,2,3)
 ```
 
+## Parser Requirements
+TODO: Put requirements (Python3, Java, and ANTLR4???)
+
 ## Running and Installation
 TODO: Put full instructions here
 
 ## Demo Video
 Please find below a link to a YouTube video demonstrating our parser:
-(REPLACE THIS LINE WITH YOUTUBE VIDEO LINK)
+TODO: (REPLACE THIS LINE WITH YOUTUBE VIDEO LINK)

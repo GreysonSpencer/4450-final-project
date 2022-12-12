@@ -53,7 +53,20 @@ for x + 1:
     x+=x
 
 while:
-    # Code here
+    y = 7 + 2
 ```
+### Phase 4
+Support for function calls and function implementations
+Example of a function definition:
+```
+def newFunc(x,y,z):
+    z = x + y
+    return z - 5
+```
+Example of a function call
+```
+Variable1 = newFunc(1,2,3)
+```
+
 ## Running and Installation
 TODO: Put full instructions here

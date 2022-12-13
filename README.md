@@ -80,4 +80,5 @@ First, install the Java SDK version 19.0.1. This is required for the parser to o
 
 ## Demo Video
 Please find below a link to a YouTube video demonstrating our parser:
-TODO: (REPLACE THIS LINE WITH YOUTUBE VIDEO LINK)
+
+https://youtu.be/1k1qGADn7i4

@@ -78,6 +78,6 @@ NEWLINE: [\r\n]+;
 
 TAB: '    ' | '\t';
 
-WHITESPACE: [ ]+ -> skip;
+WHITESPACE: [ ]+? -> skip;
 
 COMMENT: '#' ~[\r\n]* NEWLINE -> skip;

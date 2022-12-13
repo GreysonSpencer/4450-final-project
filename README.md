@@ -1,8 +1,8 @@
 # 4450-final-project
 ## The Team
-Tom Hagedorn
-Ryan Orf
-Greyson Spencer
+Tom Hagedorn,
+Ryan Orf,
+Greyson Spencer,
 Nathan Toepke
 
 ## About
@@ -73,10 +73,10 @@ Variable1 = newFunc(1,2,3)
 ```
 
 ## Parser Requirements
-Our parser requires an installation of the Java SDK version 19.0.1 for compilation, and a given python file for parsing. Once the java compiler is successfully pathed, the provided batch file will run the necessary commands to process the provided python file with ANTLR's jar, and will provide a detailed graphical tree of the parsed python file. Our current implementation relies on a batch file, so Windows is the preferred operating system for our parser. Finally, we ONLY support tabs "\t" for indentation. Any use of 4 spaces in a row in lieu of a tab is incorrect usage of our parser.
+Our parser requires an installation of the Java SDK version 19.0.1 for compilation, and a given python file for parsing. Once the java compiler is successfully pathed, the provided batch file will run the necessary commands to process the provided python file with ANTLR's jar, and will provide a detailed graphical tree of the parsed python file. Our current implementation relies on a batch file, so Windows is the preferred operating system for our parser. 
 
 ## Running and Installation
-First, install the Java SDK version 19.0.1. This is required for the parser to operate properly. Then, make sure the java path environment variable has been correctly updated to reflect the SDK's location. Then, the user should be able to download the current version of our parser. Inside, there should be a batch file, which when ran on the command line with an argument of a python file, will display a parse tree to the user of the given file.
+First, install the Java SDK version 19.0.1. This is required for the parser to operate properly. Then, make sure the java path environment variable has been correctly updated to reflect the SDK's location. Then, the user should be able to download the current version of our parser. Inside, there should be a batch file, which when ran on the command line with an argument of a python file, will display a parse tree to the user of the given file. The button at the bottom of the GUI can then be used to save the parse tree as an image.
 
 ## Demo Video
 Please find below a link to a YouTube video demonstrating our parser:
